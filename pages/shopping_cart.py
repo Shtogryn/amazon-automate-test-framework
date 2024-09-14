@@ -1,3 +1,6 @@
+import time
+from os import times
+
 from selenium.webdriver.common.by import By
 
 class ShoppingCart:
@@ -8,7 +11,7 @@ class ShoppingCart:
 
     def delete_first_item_from_shopping_cart(self):
         self.driver.find_element(By.XPATH, '//input[@value="Delete"][1]').click()
-        self.driver.implicitly_wait(2)
+        time.sleep(2)
 
     def delete_all_items_from_shopping_cart(self):
         items = self.driver.find_elements(By.XPATH, '//input[@value="Delete"]')
