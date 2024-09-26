@@ -1,5 +1,6 @@
 import time
 
+from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 
@@ -12,8 +13,12 @@ class HomePage:
 
     def open_browser(self):
         self.driver.get('https://www.amazon.com/')
-        self.wait.until(ec.presence_of_element_located((By.XPATH, '//a[@onclick="window.location.reload()"]'))).click()
-        self.wait.until(ec.presence_of_element_located((By.ID, 'nav-logo-sprites')))
+        try:
+            self.wait.until(ec.presence_of_element_located((By.ID, 'nav-logo-sprites')))
+        except TimeoutException:
+            self.wait.until(ec.presence_of_element_located((By.XPATH,
+            '//a[@onclick="window.location.reload()"]'))).click()
+
 
     def navigate_to_shopping_cart(self, is_pop_up=False):
         if is_pop_up is True:
