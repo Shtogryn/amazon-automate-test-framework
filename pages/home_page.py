@@ -1,3 +1,4 @@
+import logging
 import time
 
 from selenium.common import TimeoutException
@@ -15,7 +16,8 @@ class HomePage:
         self.driver.get('https://www.amazon.com/')
         try:
             self.wait.until(ec.presence_of_element_located((By.ID, 'nav-logo-sprites')))
-        except TimeoutException:
+        except TimeoutException as ex:
+            logging.info(str(ex) + 'Home page is not displayed')
             self.wait.until(ec.presence_of_element_located((By.XPATH,
             '//a[@onclick="window.location.reload()"]'))).click()
 

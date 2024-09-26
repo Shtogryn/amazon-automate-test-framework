@@ -52,8 +52,8 @@ class SearchResultsPage:
                 ec.presence_of_element_located((By.CLASS_NAME, 'a-changeover-inner')))
         return cnt
 
-    def check_are_goods_same_brand(self):
+    def check_are_goods_same_brand(self, expected_name):
         list_goods = self.driver.find_elements(By.XPATH, '//span[@class="a-size-medium a-color-base a-text-normal"]')
         for i in list_goods:
-            assert 'Nothing Phone' in i.text
+            assert expected_name in i.text
         self.driver.implicitly_wait(1)
