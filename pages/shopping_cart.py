@@ -23,9 +23,9 @@ class ShoppingCart:
 
     def check_is_cart_empty(self):
         with allure.step('Verify that the all items are deleted from shopping cart'):
-            txt = self.driver.find_element(By.TAG_NAME, 'h2')
+            txt = self.driver.find_element(By.XPATH,'//*[contains(text(), "Your Amazon Cart is empty")]')
             assert txt.is_displayed() is True
-            assert txt.text == 'Your Amazon Cart is empty'
+            assert txt.text == 'Your Amazon Cart is empty.'
 
     def check_is_cart_full(self, items):
         with allure.step('Check that the products are added to shopping cart'):

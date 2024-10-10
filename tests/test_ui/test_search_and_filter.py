@@ -3,6 +3,7 @@ import allure
 from pages.home_page import HomePage
 from pages.search_results_page import SearchResultsPage
 
+
 @pytest.mark.usefixtures("get_driver")
 @pytest.mark.searchfilter
 class TestSearchFilter:

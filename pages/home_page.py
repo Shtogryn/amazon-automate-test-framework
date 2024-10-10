@@ -21,8 +21,7 @@ class HomePage:
             except TimeoutException as ex:
                 logging.info(str(ex) + 'Home page is not displayed')
                 self.wait.until(ec.presence_of_element_located((By.XPATH,
-                '//a[@onclick="window.location.reload()"]'))).click()
-
+                                                                '//a[@onclick="window.location.reload()"]'))).click()
 
     def navigate_to_shopping_cart(self, is_pop_up=False):
         with allure.step('Navigate to shopping cart'):
@@ -30,8 +29,9 @@ class HomePage:
                 pop_up = self.driver.find_element(By.CLASS_NAME, 'a-changeover-inner')
                 while pop_up.is_displayed():
                     time.sleep(3)
+                    
             self.driver.find_element(By.ID, 'nav-cart').click()
-            self.wait.until(ec.presence_of_element_located((By.TAG_NAME, 'h2')))
+            self.wait.until(ec.presence_of_element_located((By.TAG_NAME,'h3')))
 
     def search_amazon(self, text):
         with allure.step('Search product'):
